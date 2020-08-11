@@ -1,6 +1,11 @@
 #ifndef controller_h
 #define controller_h
 
+#include <iostream>
+#include "phSensor.hpp"
+#include "ppmSensor.hpp"
+#include "engine.hpp"
+
 using namespace std;
 
 class controller
