@@ -1,0 +1,14 @@
+#include <cstdlib>
+#include <cstdio>
+#include <random>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+    
+
+    return 0;
+}
