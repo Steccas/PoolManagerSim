@@ -10,11 +10,14 @@ using namespace std;
 class engine
 {
 private:
-    pool *p;
-    float timer;
+    pool *pool;
+    float power;
+    bool isOn;
 public:
-    engine();
+    engine(pool*, float);
     void clean();
+    void start();
+    void stop();
 };
 
 #endif

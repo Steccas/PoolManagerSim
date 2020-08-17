@@ -11,7 +11,7 @@ class sensor
 protected:
     pool *p;
 public:
-    sensor();
+    sensor(pool*);
     virtual float read();
 };
 

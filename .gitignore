@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+#editors
+*.vs
+*.vscode

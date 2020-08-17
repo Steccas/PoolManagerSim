@@ -11,15 +11,18 @@ class pool
 {
 private:
     //water *w;
+    bool hiTemp;
     float water;
-    float ph;
-    float ppm;
-    thread updater;
+    atomic<float> ph;
+    atomic<float> ppm;
+    thread* updater;
 public:
     pool(float);
     void update();
     float getPH();
     float getPPM();
+    void risePH();
+    void lowerPH();
 };
 
 #endif

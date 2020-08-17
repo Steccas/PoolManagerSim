@@ -12,12 +12,13 @@ class controller
 {
 private:
     float ph;
+    float ppm;
     //pool *p;
-    phSensor *phSens;
-    ppmSensor *ppmSens;
+    phSensor *phS;
+    ppmSensor *ppmS;
     engine *eng;
 public:
-    controller();
+    controller(phSensor*, ppmSensor*, engine*);
     void read();
     void startEngine();
     void stopEngine();
