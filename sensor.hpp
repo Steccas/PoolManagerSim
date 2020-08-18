@@ -12,7 +12,7 @@ protected:
     pool *p;
 public:
     sensor(pool*);
-    virtual float read();
+    virtual float read() = 0;
 };
 
 #endif

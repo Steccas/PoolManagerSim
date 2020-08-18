@@ -10,11 +10,11 @@ using namespace std;
 class engine
 {
 private:
-    pool *pool;
-    float power;
+    pool *_pool;
+    int power;
     bool isOn;
 public:
-    engine(pool*, float);
+    engine(pool*, int);
     void clean();
     void start();
     void stop();

@@ -32,7 +32,7 @@ void pool::update(){
         {
             ppm.store(ppm.load() - 0.2);
         }
-        ph.store(ph.load() + 0.1);
+        ph.store(ph.load() - 0.1);
         //cout << ppm << endl;
     }
 }
@@ -41,13 +41,22 @@ float pool::getPH(){return ph.load();}
 
 float pool::getPPM(){return ppm.load();}
 
-void pool::risePH()
-{
-    float value = 5 * (1 / water);
-    ph.store(ph.load() + value);
-}
-
 void pool::lowerPH()
 {
-    ph.store(ph.load - 0.1);
+    float value = 5 * (1 / water);
+    ph.store(ph.load() - value);
+}
+
+void pool::risePPM()
+{
+    int j = water / 10;
+    for (int i = 0; i < j; i++) {
+        this_thread::sleep_for(chrono::seconds(5));
+        ppm.store(ppm.load() + 0.15);
+    }
+}
+
+void pool::risePH()
+{
+    ph.store(ph.load() + 0.125);
 }

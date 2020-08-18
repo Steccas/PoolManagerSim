@@ -7,11 +7,12 @@
 
 using namespace std;
 
-class ppmSensor : sensor
+class ppmSensor : public sensor
 {
 public:
-    ppmSensor();
-    float read();
+    ppmSensor(pool*);
+    float read() override;
+    void injectChlorine();
 };
 
 #endif

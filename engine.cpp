@@ -9,18 +9,18 @@
 
 using namespace std;
 
-engine::engine(pool* p, float p)
+engine::engine(pool* p, int _p)
 {
-	pool = p;
-	timer = t;
+	_pool = p;
+	power = _p;
 	isOn = false;
 }
 
 void engine::clean()
 {
 	for (int i = 1; i > 0; i++) {
-		this_thread::sleep_for(chrono::seconds(t));
-		if(isOn) p->lowerPH();
+		this_thread::sleep_for(chrono::seconds(power));
+		if(isOn) _pool->risePH();
 	}
 }
 

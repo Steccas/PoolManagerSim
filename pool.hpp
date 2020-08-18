@@ -22,6 +22,7 @@ public:
     float getPH();
     float getPPM();
     void risePH();
+    void risePPM();
     void lowerPH();
 };
 

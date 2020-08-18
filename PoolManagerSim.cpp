@@ -8,12 +8,21 @@
 
 #include "pool.hpp"
 #include "engine.hpp"
+#include "controller.hpp"
+#include "phSensor.hpp"
+#include "ppmSensor.hpp"
 
 using namespace std;
 
 pool* p;
 
 engine* e;
+
+controller* c;
+
+phSensor* phs;
+
+ppmSensor* ppms;
 
 void updatePool();
 
@@ -22,6 +31,8 @@ void showStats();
 void reader();
 
 void engineOperation();
+
+void controllerOperation();
 
 void inputManager();
 
@@ -32,12 +43,16 @@ int main(int argc, char **argv)
     if (argc == 2) {
         cout << "Starting..." << endl;
         p = new pool(atof(argv[1]));
-        e = new engine(p, 10);
-        thread t1(updatePool);
-        thread t2(engineOperation);
+        e = new engine(p, 4);
+        phs = new phSensor(p);
+        ppms = new ppmSensor(p);
+        c = new controller(phs, ppms, e, 2);
+        thread tPool(updatePool);
+        thread tEngine(engineOperation);
+        thread tController(controllerOperation);
         inputManager();
-        t1.join();
-        t2.join();
+        tPool.join();
+        tEngine.join();
     }
     else
     {
@@ -53,8 +68,8 @@ void updatePool() {
 
 void showStats()
 {
-    float ppm = p->getPPM();
-    float ph = p->getPH();
+    float ppm = c->getPPMReading();
+    float ph = c->getPHReading();
     cout << "PPM: " << ppm << "\n" << "PH: " << ph << "\n";
 }
 
@@ -72,6 +87,11 @@ void engineOperation()
 {
     e->start();
     e->clean();
+}
+
+void controllerOperation()
+{
+    c->manage();
 }
 
 void inputManager()
@@ -101,5 +121,5 @@ void inputManager()
 
 void swim()
 {
-    p->risePH();
+    p->lowerPH();
 }

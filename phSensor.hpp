@@ -7,11 +7,11 @@
 
 using namespace std;
 
-class phSensor : sensor
+class phSensor : public sensor
 {
 public:
-    phSensor();
-    float read();
+    phSensor(pool*);
+    float read() override;
 };
 
 #endif
