@@ -24,6 +24,8 @@ public:
     void risePH();
     void risePPM();
     void lowerPH();
+    bool getHiTemp();
+    void setHiTemp(bool);
 };
 
 #endif

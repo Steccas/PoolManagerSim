@@ -38,6 +38,8 @@ void inputManager();
 
 void swim();
 
+void setTemp();
+
 int main(int argc, char **argv)
 {
     if (argc == 2) {
@@ -97,7 +99,7 @@ void controllerOperation()
 void inputManager()
 {
     short option;
-    cout << "1: Show pool stats\n2: Let a new person swim\n3: exit\n";
+    cout << "1: Show pool stats\n2: Let a new person swim\n3: Set temp\n4: exit\n";
     for (int i = 1; i > 0; i++) {
         cout << "> ";
         cin >> option;
@@ -110,6 +112,9 @@ void inputManager()
             swim();
             break;
         case (3):
+            setTemp();
+            break;
+        case (4):
             exit(0);
             break;
         default:
@@ -122,4 +127,42 @@ void inputManager()
 void swim()
 {
     p->lowerPH();
+}
+
+void setTemp()
+{
+    bool isHighTemp = p->getHiTemp();
+    char ch;
+    if (isHighTemp){
+        cout << "Temperature is currently high, do you wish to set it on normal? (y or n)\n";
+        cout << "> ";
+        cin >> ch;
+        if (ch == 'y'){
+            p->setHiTemp(false);
+        }
+        else if (ch == 'n')
+        {
+            return;
+        }
+        else
+        {
+            cout << "Unvalid option\n";
+        }
+    }
+    else{
+         cout << "Temperature is currently low, do you wish to set it on high? (y or n)\n";
+        cout << "> ";
+        cin >> ch;
+        if (ch == 'y'){
+            p->setHiTemp(true);
+        }
+        else if (ch == 'n')
+        {
+            return;
+        }
+        else
+        {
+            cout << "Unvalid option\n";
+        }
+    }
 }

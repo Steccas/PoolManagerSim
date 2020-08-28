@@ -21,7 +21,6 @@ pool::pool(float v){
 }
 
 void pool::update(){
-    //v*12 cloro da mettere
     //diminuisci tot cloro ogni n secondi
     //varia ph 
     for(int i=1; i>0 ; i++) {
@@ -59,4 +58,14 @@ void pool::risePPM()
 void pool::risePH()
 {
     ph.store(ph.load() + 0.125);
+}
+
+bool pool::getHiTemp()
+{
+    return hiTemp;
+}
+
+void pool::setHiTemp(bool t)
+{
+    hiTemp = t;
 }
